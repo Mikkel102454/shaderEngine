@@ -3,15 +3,20 @@ cmake_minimum_required(VERSION 3.29)
 # Build the engine code as a static library
 add_library(engine STATIC
         src/window.cpp
-        include/window.h
         src/appLoop.cpp
-        include/appLoop.h
-
         src/DirectX12/dxgiFactory.cpp
-        include/DirectX12/dxgiFactory.h
-
+        src/DirectX12/rtv.cpp
+        src/DirectX12/command.cpp
+        src/DirectX12/fence.cpp
         src/Pipeline/renderer.cpp
-        include/Pipeline/renderer.h
+        src/DXWindow.cpp
+
+        include/window.h
+        include/appLoop.h
+        include/DXWindow.h
+
+        #d3dx12
+        include/external/d3dx12.h
 )
 
 # Public headers are in engine/include

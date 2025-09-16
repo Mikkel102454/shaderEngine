@@ -1,4 +1,5 @@
 #include "window.h"
+#include "DXWindow.h"
 
 void OnSize(HWND hwnd, UINT flag, int width, int height);
 
@@ -30,7 +31,7 @@ void OnSize(HWND hwnd, UINT flag, int width, int height) {
     //TODO resize logic
 }
 
-HWND WINAPI createWindow(HINSTANCE hInstance, wchar_t* title, int width, int height,  int nCmdShow){
+bool DXWindow::InitWindow(HINSTANCE hInstance, const wchar_t* title, int width, int height, int nCmdShow) {
     MSG Msg;
 
     // Register the window class.
@@ -61,11 +62,13 @@ HWND WINAPI createWindow(HINSTANCE hInstance, wchar_t* title, int width, int hei
             nullptr        // Additional application data
     );
 
-    if(hwnd != nullptr)
-    {
-        ShowWindow(hwnd, nCmdShow);
-        UpdateWindow(hwnd);
-    }
+    if(hwnd == nullptr)
+        return false;
 
-    return hwnd;
+    ShowWindow(hwnd, nCmdShow);
+    UpdateWindow(hwnd);
+
+    m_hwnd = hwnd;
+
+    return true;
 }
